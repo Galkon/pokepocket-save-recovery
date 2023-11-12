@@ -48,15 +48,15 @@ const HiddenFileInput = styled.input`
 const Container = styled.div`
   display: flex;
   align-items: center;
-  min-width: 400px;
   background-color: #142631;
   border: 1px solid rgba(0, 0, 0, 0.32);
-  border-radius: 4px;
+  border-radius: 8px;
   padding: 2px;
   padding-inline-start: 12px;
   gap: 12px;
   cursor: pointer;
   white-space: nowrap;
+  min-width: min(400px, 90vw);
   max-width: 90vw;
   //box-shadow: 0 0 12px 0 rgba(0, 0, 0, 0.64);
 
