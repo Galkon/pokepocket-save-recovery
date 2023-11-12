@@ -1,0 +1,33 @@
+name: Build and Package on Release
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  build-and-package:
+    runs-on: windows-latest  # Use a Windows runner to build the .exe
+
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'  # Specify the Node.js version
+
+      - name: Install PNPM
+        run: npm install -g pnpm
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Build and package app
+        run: pnpm run dist
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: app-executable
+          path: dist/*.exe  # Adjust this to match the output directory and file pattern of your packaged app
