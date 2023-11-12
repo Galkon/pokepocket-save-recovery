@@ -1,6 +1,7 @@
 name: Build and Package on Release
 
 on:
+  workflow_dispatch: {}
   release:
     types: [published]
 
