@@ -10,6 +10,10 @@ This is an electron app using react for UI. It is extremely simple, and just use
 
 It will take whatever .sta file you select, grab the data from starting offset `0x60F4A` to `0x80F49` and export that as a .sav file.
 
+### Limitations
+- Currently only supports Gen 3
+- Currently only works with English versions
+
 ## Running the program
 1. Clone this repository
 2. Ensure you have `pnpm` installed, `npm` should also work fine
