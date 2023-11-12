@@ -2,7 +2,7 @@ name: Build and Package on Release
 
 on:
   release:
-    types: [published]
+    types: [created]
 
 jobs:
   build-and-package:
