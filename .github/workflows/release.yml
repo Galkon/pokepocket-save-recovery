@@ -25,6 +25,8 @@ jobs:
 
       - name: Build and package app
         run: pnpm run dist
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
 
       - name: Upload artifact
         uses: actions/upload-artifact@v2
