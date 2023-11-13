@@ -1,12 +1,5 @@
 import fs from 'fs-extra'
 import {Generations, STA_SAVE_BLOCKS} from '../../shared/constants.mjs'
-import SaveSlot from '../pkmn/SaveSlot.mjs'
-
-function bufferToHexString(buffer) {
-  return Array.from(new Uint8Array(buffer), byte => {
-    return ('0' + (byte & 0xFF).toString(16)).slice(-2);
-  }).join('');
-}
 
 // extract the save block from .sta to .sav
 export const exportSaveBlock = async (
@@ -34,4 +27,5 @@ export const exportSaveBlock = async (
     console.error(err)
     throw new Error('Error writing Pokemon save block to .sav')
   }
+  return saveBlock
 }

@@ -87,9 +87,16 @@ const start = async () => {
         return
       }
       try {
-        await exportSaveBlock(file.path, outputFile)
-        event.reply('convert-success', outputFile)
+        const saveBlock = await exportSaveBlock(file.path, outputFile)
+
+        const {Gen3Save} = (await import('./src/main/pkmn/gen3/Gen3Save.mjs'))
+        const gen3Save = new Gen3Save({buffer: saveBlock})
+
+        event.reply('convert-success', outputFile, gen3Save)
         shell.showItemInFolder(outputFile)
+
+        // @todo remove
+        await fs.writeJson('save.json', gen3Save)
       } catch (err) {
         event.reply('convert-error', `Error exporting save block: ${err.message}`)
         console.error(err)

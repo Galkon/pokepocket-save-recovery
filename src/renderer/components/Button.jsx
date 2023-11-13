@@ -24,7 +24,6 @@ const lightenDarkenColor = (col, amt) => {
 // Styled button component
 const StyledButton = styled.button`
   background-color: #4684AD;
-  border: none;
   border-radius: 6px;
   font-weight: 500; // Medium font weight
   font-size: 14px;
@@ -33,7 +32,8 @@ const StyledButton = styled.button`
   cursor: pointer;
   transition: background-color 0.3s ease;
   flex-shrink: 0;
-  box-shadow: 0 1px 0px 1px rgba(0, 0, 0, 0.75);
+  border: 1px solid black;
+  //box-shadow: 0 1px 0px 1px rgba(0, 0, 0, 0.75);
 
   &:hover {
     background-color: ${() => lightenDarkenColor('#4684AD', 20)};

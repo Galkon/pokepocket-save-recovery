@@ -40,6 +40,7 @@ const Notice = styled.div`
 const App = () => {
   const [inputFile, setInputFile] = useState(null)
   const [outputFile, setOutputFile] = useState(null)
+  const [pkmnSave, setPkmnSave] = useState(null)
   const [error, setError] = useState(null)
 
   const onClickConvert = () => {
@@ -52,8 +53,9 @@ const App = () => {
     });
   }
   useEffect(() => {
-    const onSuccess = filePath => {
+    const onSuccess = (filePath, save) => {
       setOutputFile(filePath)
+      setPkmnSave(save)
       setError(null)
     }
     const onError = (err, outputFile) => {
