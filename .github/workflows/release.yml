@@ -6,7 +6,10 @@ on:
 
 jobs:
   build-and-package:
-    runs-on: windows-latest  # Use a Windows runner to build the .exe
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [macos-latest, windows-latest]
 
     steps:
       - name: Check out code
@@ -23,10 +26,7 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
-      - name: Build app
-        run: pnpm run build
-
-      - name: Package app
+      - name: Build and package app
         run: pnpm run dist
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}

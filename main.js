@@ -3,6 +3,8 @@ const path = require('path')
 const http = require('http')
 const fs = require('fs-extra')
 
+const isDevelopment = process.env.NODE_ENV === 'development'
+
 function pollServer(url) {
   return new Promise(resolve => {
     const request = http.get(url, () => {
@@ -30,17 +32,20 @@ const createWindow = async () => {
     minWidth: 700,
     minHeight: 400,
     backgroundColor: '#000',
-    icon: path.resolve(path.join(__dirname, 'build', 'icon.png')),
     webPreferences: {
-      preload: path.join(__dirname, 'preload.js')
+      contextIsolation: true,
+      sandbox: false,
+      preload: isDevelopment
+        ? path.resolve('src/main/preload.js')
+        : path.join(__dirname, 'preload.js')
     }
   })
   const startUrl =
-    process.env.NODE_ENV === 'development'
+    isDevelopment
       ? 'http://localhost:8080' // URL where webpack-dev-server runs
-      : `file://${path.join(__dirname, 'dist/index.html')}`;
+      : `file://${path.join(__dirname, 'index.html')}`;
 
-  if (process.env.NODE_ENV === 'development') {
+  if (isDevelopment) {
     await pollServer(startUrl); // Wait for server to be ready
   }
 
