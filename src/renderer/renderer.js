@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react'
-import ReactDOM from 'react-dom'
+import { createRoot } from 'react-dom/client';
 import styled from 'styled-components'
 import Pikachu from './icons/Pikachu'
 import FileSelector from './components/FileSelector'
@@ -122,4 +122,6 @@ const App = () => {
   )
 }
 
-ReactDOM.render(<App />, document.getElementById('root'));
+const domNode = document.getElementById('root')
+const root = createRoot(domNode)
+root.render(<App />)

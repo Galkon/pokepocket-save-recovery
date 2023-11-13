@@ -4,17 +4,32 @@ import {BlueContainer} from './Styles'
 
 const Container = styled(BlueContainer)`
   line-height: 0.65;
+  flex-direction: row;
+  gap: 6px;
+  
+  img {
+    height: 36px;
+  }
+`
+
+const Text = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 `
 
 const Level = styled.span`
   font-size: 15px;
 `
 
-const Pokemon = ({name, level}) => {
+const Pokemon = ({name, level, speciesId}) => {
   return (
     <Container>
-      <span>{name}</span>
-      <Level>Lv. {level}</Level>
+      <img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-iii/firered-leafgreen/${speciesId}.png`}/>
+      <Text>
+        <span>{name}</span>
+        <Level>Lv. {level}</Level>
+      </Text>
     </Container>
   )
 }

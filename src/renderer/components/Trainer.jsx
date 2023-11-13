@@ -19,10 +19,10 @@ const Base = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  min-width: 200px;
-  min-height: 200px;
-  max-width: 250px;
-  max-height: 250px;
+  min-width: 250px;
+  min-height: 250px;
+  max-width: 300px;
+  max-height: 300px;
   aspect-ratio: 1/1;
   background-color: gray;
   border: 1px solid black;
@@ -34,13 +34,16 @@ const Base = styled.div`
 `
 
 const Card = styled(Base)`
-  background: repeating-linear-gradient(
-    0deg,
-    ${({$gender}) => Colors[$gender].primary},
-    ${({$gender}) => Colors[$gender].primary} 1px,
-    ${({$gender}) => Colors[$gender].secondary} 1px,
-    ${({$gender}) => Colors[$gender].secondary} 5px
-  );
+  // background: repeating-linear-gradient(
+  //   0deg,
+    //   ${({$gender}) => Colors[$gender].primary},
+    //   ${({$gender}) => Colors[$gender].primary} 1px,
+    //   ${({$gender}) => Colors[$gender].secondary} 1px,
+    //   ${({$gender}) => Colors[$gender].secondary} 5px
+  // );
+  background: rgb(33, 89, 133);
+  border: 1px solid black;
+  outline: 1px solid rgba(56, 144, 216);
   padding: 4px;
   gap: 4px;
   justify-content: space-between;
