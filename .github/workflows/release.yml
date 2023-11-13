@@ -35,4 +35,6 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: app-executable
-          path: dist/*.exe  # Adjust this to match the output directory and file pattern of your packaged app
+          path: |
+            dist/*.exe
+            dist/*.dmg
