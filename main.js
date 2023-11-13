@@ -27,10 +27,11 @@ function pollServer(url) {
  */
 const createWindow = async () => {
   const win = new BrowserWindow({
+    show: false,
     width: 700,
-    height: 400,
+    height: 420,
     minWidth: 700,
-    minHeight: 400,
+    minHeight: 420,
     backgroundColor: '#000',
     webPreferences: {
       contextIsolation: true,
@@ -49,6 +50,10 @@ const createWindow = async () => {
     await pollServer(startUrl); // Wait for server to be ready
   }
 
+  win.removeMenu()
+  win.once('ready-to-show', () => {
+    win.show()
+  })
   await win.loadURL(startUrl)
   return win
 }
