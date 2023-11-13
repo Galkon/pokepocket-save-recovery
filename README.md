@@ -5,6 +5,15 @@ If you're like me and you play Pokemon Gen 3 games on the Analogue Pocket, you m
 
 This program lets you select an Analogue Pocket .sta save state file for and output the Pokemon save block from it, which you can then place into your core saves folder to recover your corrupt save state.
 
+## How to run it
+1. Download the latest release for macOS or Windows [here](https://github.com/Galkon/pokepocket-save-recovery/releases)
+  - .dmg for macOS and .exe for Windows
+2. Accept warnings for "potentially harmful file" (this program is unsigned, but completely safe, but still you will get browser and OS warnings)
+3. App will launch and you can select an .sta file
+4. Convert .sta file to .sav and it will open the .sav file location and preview your save
+
+---
+
 ## How does it work?
 - This is an electron app using React for UI
 - Interacting with files and decoding them happens in the main process
@@ -18,12 +27,9 @@ This program lets you select an Analogue Pocket .sta save state file for and out
 - Currently only tested with English game save states
   - It should find the save block for any gen 3 game regardless of language, but it is untested.
 
-## Running the program
-1. Clone this repository
-2. Ensure you have `pnpm` installed, `npm` should also work fine, then run `pnpm install`
-3. Run `pnpm run build && pnpm start` to open the app
+---
 
-## Development
+## Local development
 If you want to run it locally and develop it further, you can run `pnpm run dev` to launch the app in development mode.
 
 ## Credits
