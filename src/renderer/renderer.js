@@ -20,7 +20,6 @@ const Body = styled.div`
 const Container = styled.div`
   display: flex;
   width: 100%;
-  //padding: 32px;
   gap: 4px;
   justify-content: center;
 `

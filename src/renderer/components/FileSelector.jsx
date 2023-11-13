@@ -1,10 +1,10 @@
 import React, {useRef} from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import Button from './Button'
 
 const propTypes = {
-  file: PropTypes.object
+  file: PropTypes.object,
+  onSelect: PropTypes.func
 }
 
 const FileSelector = ({file, onSelect}) => {
@@ -50,7 +50,6 @@ const Container = styled.div`
   box-shadow: 0 0 0 1px black;
   border-radius: 3px;
   padding: 8px 12px;
-  //padding-inline-start: 12px;
   gap: 12px;
   cursor: pointer;
   text-wrap: pretty;

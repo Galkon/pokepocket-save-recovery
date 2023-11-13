@@ -35,8 +35,7 @@ const StyledButton = styled.button`
   flex-shrink: 0;
   outline: 1px solid black;
   border: 2px solid white;
-  font-family: 'Pokemon Fire Red';
-  //box-shadow: 0 1px 0px 1px rgba(0, 0, 0, 0.75);
+  font-family: 'Pokemon Fire Red', sans-serif;
 
   &:hover {
     background-color: ${() => lightenDarkenColor('#4684AD', 20)};
