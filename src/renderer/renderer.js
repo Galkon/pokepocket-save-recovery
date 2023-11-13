@@ -53,7 +53,7 @@ const App = () => {
       size: inputFile.size,
       lastModified: inputFile.lastModified,
       lastModifiedDate: inputFile.lastModifiedDate,
-      overwrite: true
+      overwrite: false
     });
   }
   useEffect(() => {
