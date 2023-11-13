@@ -12,7 +12,8 @@ It will take whatever .sta file you select, grab the data from starting offset `
 
 ### Limitations
 - Currently only supports Gen 3
-- Currently only works with English versions
+- Currently only tested with English versions
+  - It should find the save block for any gen 3 game regardless of language, but it is untested.
 
 ## Running the program
 1. Clone this repository

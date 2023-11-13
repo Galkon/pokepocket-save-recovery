@@ -25,13 +25,16 @@ const Header = styled.div`
 
 const Notice = styled.div`
   padding: 16px;
-  border-radius: 4px;
+  border-radius: 6px;
   background-color: rgba(0, 0, 0, 0.32);
-  font-size: 12px;
-  font-weight: normal;
+  font-size: 13px;
   color: ${({$state}) => $state === 'error' ? '#ff5555' : ($state === 'success' ? '#60ffa0' : 'white')};
-  font-weight: ${({$state}) => $state ? 'bold' : 'normal'};
-  max-width: 90vw
+  font-weight: ${({$state}) => $state ? '500' : 'normal'};
+  line-height: 1.5;
+  max-width: 90vw;
+  text-shadow: 1px 1px 0 black;
+  overflow-wrap: break-word;
+  box-shadow: 0 1px 0px 1px rgba(0, 0, 0, 0.5);
 `
 
 const App = () => {
@@ -69,14 +72,14 @@ const App = () => {
   return (
     <Container>
       <Header>
-        <Pikachu/>
-        PokePocket Save Recovery
-        <Pikachu/>
+        <Pikachu size={96}/>
       </Header>
       <Notice $state={error?.length ? 'error' : (outputFile ? 'success' : '')}>
         {
           !outputFile && !error?.length &&
-          'Notice: This only works with Gen 3 games: Fire Red, Leaf Green, Sapphire, Ruby, Emerald'
+          <span>
+            <strong>Notice:</strong><br/>This only works with Gen 3 games: Fire Red, Leaf Green, Sapphire, Ruby, Emerald
+          </span>
         }
         {
           outputFile && !error?.length &&

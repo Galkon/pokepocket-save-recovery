@@ -1,5 +1,6 @@
 {
   "name": "pokepocket-save-recovery",
+  "productName": "PokePocket Save Recovery",
   "version": "1.0.0",
   "description": "Recover Pokemon .sav files from a corrupt Analogue Pocket .sta file.",
   "main": "main.js",
@@ -18,6 +19,9 @@
     "nsis": {
       "oneClick": false,
       "allowToChangeInstallationDirectory": true
+    },
+    "dmg": {
+      "backgroundColor": "2A5167"
     },
     "publish": {
       "provider": "github",

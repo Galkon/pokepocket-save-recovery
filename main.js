@@ -1,8 +1,7 @@
-const { app, BrowserWindow, ipcMain, shell} = require('electron')
+const { app, BrowserWindow, ipcMain, shell, nativeImage} = require('electron')
 const path = require('path')
 const http = require('http')
 const fs = require('fs-extra')
-const {exportSaveBlock} = require('./src/main/utils')
 
 function pollServer(url) {
   return new Promise(resolve => {
@@ -26,9 +25,10 @@ function pollServer(url) {
  */
 const createWindow = async () => {
   const win = new BrowserWindow({
-    width: 600,
-    height: 400,
+    width: 520,
+    height: 420,
     backgroundColor: '#2A5167',
+    icon: path.resolve(path.join(__dirname, 'build', 'icon.png')),
     webPreferences: {
       contextIsolation: true,
       nodeIntegration: true,
@@ -70,6 +70,8 @@ const start = async () => {
       activating = false
     }
   })
+
+  const {exportSaveBlock} = (await import('./src/main/utils/export.mjs'))
 
   ipcMain.on('convert-to-sav', async (event, file) => {
     try {
