@@ -7,7 +7,6 @@ This program lets you select an Analogue Pocket .sta save state file for and out
 
 ## How to run it
 1. Download the latest release for macOS or Windows [here](https://github.com/Galkon/pokepocket-save-recovery/releases)
-  - .dmg for macOS and .exe for Windows
 2. Accept warnings for "potentially harmful file" (this program is unsigned, but completely safe, but still you will get browser and OS warnings)
 3. App will launch and you can select an .sta file
 4. Convert .sta file to .sav and it will open the .sav file location and preview your save
