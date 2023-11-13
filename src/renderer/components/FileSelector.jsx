@@ -20,13 +20,10 @@ const FileSelector = ({file, onSelect}) => {
     inputRef.current.click()
   }
   return (
-    <Container onClick={onClick}>
+    <Container onClick={onClick} $chosen={!!file?.name?.length}>
       <Text $placeholder={!file}>
-        {file?.name?.length ? file.name : 'Choose a .sta file'}
+        {file?.name?.length ? file.name : 'Click to choose .sta file'}
       </Text>
-      <Button onClick={onClick}>
-        Choose File
-      </Button>
       <HiddenFileInput
         ref={inputRef}
         type="file"
@@ -48,29 +45,27 @@ const HiddenFileInput = styled.input`
 const Container = styled.div`
   display: flex;
   align-items: center;
-  background-color: #142631;
-  border: 1px solid rgba(0, 0, 0, 0.32);
-  border-radius: 8px;
-  padding: 2px;
-  padding-inline-start: 12px;
+  background-color: #275068;
+  border: 2px ${({$chosen}) => $chosen ? 'solid' : 'dashed'} rgba(225, 216, 224);
+  box-shadow: 0 0 0 1px black;
+  border-radius: 3px;
+  padding: 8px 12px;
+  //padding-inline-start: 12px;
   gap: 12px;
   cursor: pointer;
-  white-space: nowrap;
-  min-width: min(400px, 90vw);
-  max-width: 90vw;
-  //box-shadow: 0 0 12px 0 rgba(0, 0, 0, 0.64);
+  text-wrap: pretty;
 
   &:hover {
-    //background-color: rgba(0, 0, 0, 0.48);
-    border-color: #5b8098;
+    border-color: white;
+    outline-color: rgb(255, 205, 84);
   }
 `
 
 const Text = styled.span`
   width: 100%;
   text-align: center;
-  font-size: 14px;
-  color: ${({$placeholder}) => $placeholder ? 'rgba(255, 255, 255, 0.32)' : 'rgba(255, 255, 255, 0.64)'};
+  color: ${({$placeholder}) => $placeholder ? 'rgba(255, 255, 255, 0.64)' : 'rgb(248, 248, 284)'};
+  text-shadow: 1px 1px 0px rgb(104, 88, 112);
   text-overflow: ellipsis;
   overflow: hidden;
 `

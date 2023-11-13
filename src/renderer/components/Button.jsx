@@ -24,15 +24,18 @@ const lightenDarkenColor = (col, amt) => {
 // Styled button component
 const StyledButton = styled.button`
   background-color: #4684AD;
-  border-radius: 6px;
+  border-radius: 3px;
   font-weight: 500; // Medium font weight
-  font-size: 14px;
+  font-size: 22px;
   color: white;
-  padding: 8px 16px;
+  text-shadow: 1px 1px 0 black;
+  padding: 4px 12px;
   cursor: pointer;
   transition: background-color 0.3s ease;
   flex-shrink: 0;
-  border: 1px solid black;
+  outline: 1px solid black;
+  border: 2px solid white;
+  font-family: 'Pokemon Fire Red';
   //box-shadow: 0 1px 0px 1px rgba(0, 0, 0, 0.75);
 
   &:hover {

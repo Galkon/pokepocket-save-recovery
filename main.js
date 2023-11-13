@@ -25,13 +25,11 @@ function pollServer(url) {
  */
 const createWindow = async () => {
   const win = new BrowserWindow({
-    width: 520,
-    height: 420,
-    backgroundColor: '#2A5167',
+    width: 700,
+    height: 400,
+    backgroundColor: '#000',
     icon: path.resolve(path.join(__dirname, 'build', 'icon.png')),
     webPreferences: {
-      contextIsolation: true,
-      nodeIntegration: true,
       preload: path.join(__dirname, 'preload.js')
     }
   })
@@ -82,7 +80,7 @@ const start = async () => {
       }
       const outputFile = path.resolve(file.path.replace('.sta', '.sav'))
       const outputFileExists = await fs.pathExists(outputFile)
-      if (outputFileExists) {
+      if (outputFileExists && !file.overwrite) {
         event.reply('convert-error', `Output file already exists:`, outputFile)
         return
       }
@@ -95,8 +93,10 @@ const start = async () => {
         event.reply('convert-success', outputFile, gen3Save)
         shell.showItemInFolder(outputFile)
 
-        // @todo remove
-        await fs.writeJson('save.json', gen3Save)
+        if (process.env.NODE_ENV === 'development') {
+          // @todo remove
+          await fs.writeJson('save.json', gen3Save)
+        }
       } catch (err) {
         event.reply('convert-error', `Error exporting save block: ${err.message}`)
         console.error(err)

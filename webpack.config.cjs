@@ -1,5 +1,6 @@
-const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require('path')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
 
 module.exports = {
   mode: 'development',
@@ -14,13 +15,21 @@ module.exports = {
       {
         test: /\.css$/,
         use: ['style-loader', 'css-loader'],
-      },
-    ],
+      }
+    ]
   },
   plugins: [
     new HtmlWebpackPlugin({
       template: './src/renderer/index.html',
-    })
+    }),
+    new CopyWebpackPlugin({
+      patterns: [
+        {
+          from: 'public/fonts',
+          to: 'fonts',
+        },
+      ],
+    }),
   ],
   resolve: {
     extensions: ['*', '.js', '.jsx'],

@@ -10,16 +10,28 @@
 
     <style>
         /* CSS */
-        :root { font-family: 'Inter', sans-serif; }
-        @supports (font-variation-settings: normal) {
-            :root { font-family: 'Inter var', sans-serif; }
+        /*:root { font-family: 'Inter', sans-serif; }*/
+        /*@supports (font-variation-settings: normal) {*/
+        /*    :root { font-family: 'Inter var', sans-serif; }*/
+        /*}*/
+
+        @font-face {
+            font-family: 'Pokemon Fire Red';
+            src: url('./fonts/Pokemon-Fire-Red.woff2') format('woff2'),
+            url('./fonts/Pokemon-Fire-Red.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
         }
+
         body {
             padding: 0;
             margin: 0;
             width: 100vw;
             height: 100vh;
-            background-color: #2A5167;
+            background-color: #000;
+            font-family: "Pokemon Fire Red", sans-serif;
+            font-size: 20px;
         }
         #root {
             width: 100%;
