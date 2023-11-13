@@ -23,7 +23,10 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
-      - name: Build and package app
+      - name: Build app
+        run: pnpm run build
+
+      - name: Package app
         run: pnpm run dist
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}

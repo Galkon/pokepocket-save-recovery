@@ -20,9 +20,6 @@
       "oneClick": false,
       "allowToChangeInstallationDirectory": true
     },
-    "dmg": {
-      "backgroundColor": "2A5167"
-    },
     "publish": {
       "provider": "github",
       "releaseType": "release"
