@@ -1,5 +1,5 @@
 # PokePocket Save Recovery
-![image](https://github.com/Galkon/pokepocket-save-recovery/assets/1406556/9909d35f-c5b1-4f4e-bfab-38c42cbc5b6f)
+<img width="699" alt="image" src="https://github.com/Galkon/pokepocket-save-recovery/assets/1406556/ee4df0ea-2424-44b9-a1c9-3eb75470878f">
 
 If you're like me and you play Pokemon Gen 3 games on the Analogue Pocket, you may have ran into corrupt Save States using GBA cores, and even corrupt in-game saves due to various power on/off or sleep/wake functionality.
 
@@ -10,11 +10,11 @@ This program lets you select an Analogue Pocket .sta save state file for and out
 - Interacting with files and decoding them happens in the main process
 - The window gets access to IPC functionality via preloading + ContextBridge
 - Grab the .sav block data from the .sta file of choice
-- Decode it and preview the data in it to see it's integrity
+- Decode it and preview the data in it (character name, gender, pokemon team)
 - Export it to .sav file
 
-### Limitations
-- Currently only supports Gen 3 (S/R/E + FR/LG)
+## Limitations
+- Currently only supports Gen 3 (R/S/E + FR/LG)
 - Currently only tested with English game save states
   - It should find the save block for any gen 3 game regardless of language, but it is untested.
 
