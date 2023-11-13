@@ -1,5 +1,5 @@
 # PokePocket Save Recovery
-<img width="699" alt="image" src="https://github.com/Galkon/pokepocket-save-recovery/assets/1406556/ee4df0ea-2424-44b9-a1c9-3eb75470878f">
+<img width="812" alt="image" src="https://github.com/Galkon/pokepocket-save-recovery/assets/1406556/ce415c8b-2c51-4db4-aec6-ff3fc1cac5d6">
 
 If you're like me and you play Pokemon Gen 3 games on the Analogue Pocket, you may have ran into corrupt Save States using GBA cores, and even corrupt in-game saves due to various power on/off or sleep/wake functionality.
 
