@@ -27,6 +27,8 @@ const createWindow = async () => {
   const win = new BrowserWindow({
     width: 700,
     height: 400,
+    minWidth: 700,
+    minHeight: 400,
     backgroundColor: '#000',
     icon: path.resolve(path.join(__dirname, 'build', 'icon.png')),
     webPreferences: {
