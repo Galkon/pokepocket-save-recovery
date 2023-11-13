@@ -1,4 +1,4 @@
-const { app, BrowserWindow, ipcMain, shell, nativeImage} = require('electron')
+const { app, BrowserWindow, ipcMain, shell} = require('electron')
 const path = require('path')
 const http = require('http')
 const fs = require('fs-extra')
@@ -7,14 +7,14 @@ const isDevelopment = process.env.NODE_ENV === 'development'
 
 function pollServer(url) {
   return new Promise(resolve => {
-    const request = http.get(url, () => {
+    const request = http.get(url, (res) => {
       resolve(true);
       request.abort(); // We don't need to read the response, just knowing the server is up is enough
     });
 
-    request.on('error', () => {
+    request.on('error', (err) => {
       setTimeout(() => {
-        console.log(`Polling for dev server...`);
+        console.log(`Polling for dev server:`, url);
         resolve(pollServer(url)); // Retry after a delay
       }, 1000);
     });
@@ -37,23 +37,25 @@ const createWindow = async () => {
       contextIsolation: true,
       sandbox: false,
       preload: isDevelopment
-        ? path.resolve('src/main/preload.js')
+        ? path.join(__dirname, 'src', 'main', 'preload.js')
         : path.join(__dirname, 'preload.js')
     }
   })
+
   const startUrl =
     isDevelopment
-      ? 'http://localhost:8080' // URL where webpack-dev-server runs
-      : `file://${path.join(__dirname, 'index.html')}`;
-
-  if (isDevelopment) {
-    await pollServer(startUrl); // Wait for server to be ready
-  }
+      ? `http://127.0.0.1:3000`
+      : `file://${path.join(__dirname, 'index.html')}`
 
   win.removeMenu()
   win.once('ready-to-show', () => {
     win.show()
   })
+
+  if (isDevelopment) {
+    await pollServer(startUrl)
+  }
+
   await win.loadURL(startUrl)
   return win
 }
