@@ -22,10 +22,10 @@ const Level = styled.span`
   font-size: 15px;
 `
 
-const Pokemon = ({name, level, speciesId}) => {
+const Pokemon = ({name, level, speciesId, kantoId}) => {
   return (
     <Container>
-      <img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-iii/firered-leafgreen/${speciesId}.png`}/>
+      <img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${kantoId}.png`}/>
       <Text>
         <span>{name}</span>
         <Level>Lv. {level}</Level>

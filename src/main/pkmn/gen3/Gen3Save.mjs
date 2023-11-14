@@ -1,4 +1,4 @@
-import {readString} from './utils.mjs'
+import {readString, validatePkmnBlock} from './utils.mjs'
 import Gen3Pokemon from './Gen3Pokemon.mjs'
 import fs from 'fs'
 
@@ -105,8 +105,7 @@ export class Gen3Save {
 
     for (let i = 0; i < 420; i++) {
       const pkmData = dex.slice(i * 80, (i + 1) * 80);
-      if (pkmData.every(byte => byte === 0)) {
-        // Skip this entry, it's all zeros
+      if (!validatePkmnBlock(pkmData)) {
         continue;
       }
       const pkm = new Gen3Pokemon(pkmData);
@@ -118,8 +117,7 @@ export class Gen3Save {
     for (let i = 0; i < this.teamcount; i++) {
       const offset = teamoffset + (i * 100);
       const pkmData = sections[1].slice(offset, offset + 80);
-      if (pkmData.every(byte => byte === 0)) {
-        // Skip this entry, it's all zeros
+      if (!validatePkmnBlock(pkmData)) {
         continue;
       }
       const pkm = new Gen3Pokemon(pkmData);

@@ -10,6 +10,7 @@ export default class Gen3Pokemon {
 
     // If both trainer name and Pokemon name are empty, then it's invalid data
     if (!trainerName && !this.name) {
+      console.log(pkm.map(byte => `${byte}`).join(' '))
       throw new Error('Invalid Pokémon data.');
     }
 
