@@ -1,29 +1,24 @@
 import React from 'react'
 import styled from 'styled-components'
 import Pokemon from './Pokemon'
-import {BlueContainer} from './Styles'
+import {BlueContainer, Colors} from './Styles'
 
-const Colors = {
-  boy: {
-    primary: 'rgb(73, 190, 168)',
-    secondary: 'rgb(47, 152, 144)'
-  },
-  girl: {
-    primary: 'rgb(223, 139, 78)',
-    secondary: 'rgb(207, 95, 40)'
-  }
-}
+// const Colors = {
+//   boy: {
+//     primary: 'rgb(73, 190, 168)',
+//     secondary: 'rgb(47, 152, 144)'
+//   },
+//   girl: {
+//     primary: 'rgb(223, 139, 78)',
+//     secondary: 'rgb(207, 95, 40)'
+//   }
+// }
 
 const Base = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  min-width: 250px;
-  min-height: 250px;
-  max-width: 300px;
-  max-height: 300px;
-  aspect-ratio: 1/1;
   background-color: gray;
   border: 1px solid black;
   border-radius: 5px;
@@ -31,29 +26,25 @@ const Base = styled.div`
   text-shadow: 1px 1px 1px black;
   width: 100%;
   height: 100%;
+  font-family: "Pokemon", sans-serif;
+  font-size: 15px;
+  -webkit-font-smoothing: none;
 `
 
-const Card = styled(Base)`
-  // background: repeating-linear-gradient(
-  //   0deg,
-    //   ${({$gender}) => Colors[$gender].primary},
-    //   ${({$gender}) => Colors[$gender].primary} 1px,
-    //   ${({$gender}) => Colors[$gender].secondary} 1px,
-    //   ${({$gender}) => Colors[$gender].secondary} 5px
-  // );
-  background: rgb(33, 89, 133);
-  border: 1px solid black;
-  outline: 1px solid rgba(56, 144, 216);
-  padding: 4px;
-  gap: 4px;
-  justify-content: space-between;
+const Card = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  gap: 8px;
 `
 
-const Info = styled.div`
+const Player = styled.div`
   display: flex;
   flex-direction: column;
   gap: 4px;
-  margin: auto;
 `
 
 const Character = styled(BlueContainer)`
@@ -64,6 +55,7 @@ const Character = styled(BlueContainer)`
   min-height: 107px;
   max-width: 128px;
   max-height: 128px;
+  margin: 0;
 `
 
 const Name = styled(BlueContainer)`
@@ -72,7 +64,9 @@ const Name = styled(BlueContainer)`
 
 const Team = styled.div`
   display: flex;
-  flex-direction: column;
+  justify-content: center;
+  flex-direction: row;
+  flex-wrap: wrap;
   gap: 4px;
 `
 
@@ -82,24 +76,24 @@ const Trainer = ({game, name, gender, teamcount, team}) => {
   }
   return (
     <Card $gender={gender}>
-      <Info>
+      <Player>
         <Character>
           {
             gender === 'boy'
               ? <Male
                 game={game}
-                size={100}
+                size={96}
               />
               : <Female
                 game={game}
-                size={100}
+                size={96}
               />
           }
         </Character>
         <Name>
           {name}
         </Name>
-      </Info>
+      </Player>
       <Team>
         {
           team?.length > 0 &&

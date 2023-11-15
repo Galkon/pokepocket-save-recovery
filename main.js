@@ -1,4 +1,4 @@
-const { app, BrowserWindow, ipcMain, shell} = require('electron')
+const { app, BrowserWindow, ipcMain, shell, dialog} = require('electron')
 const path = require('path')
 const http = require('http')
 const fs = require('fs-extra')
@@ -28,11 +28,11 @@ function pollServer(url) {
 const createWindow = async () => {
   const win = new BrowserWindow({
     show: false,
-    width: 700,
+    width: 720,
     height: 420,
-    minWidth: 700,
+    minWidth: 720,
     minHeight: 420,
-    backgroundColor: '#000',
+    backgroundColor: '#184a73',
     webPreferences: {
       contextIsolation: true,
       sandbox: false,
@@ -85,41 +85,62 @@ const start = async () => {
 
   const {exportSaveBlock} = (await import('./src/main/utils/export.mjs'))
 
-  ipcMain.on('convert-to-sav', async (event, file) => {
+  ipcMain.on('load-save', async (event, file) => {
+    const inputFileExists = await fs.pathExists(file.path)
+    if (!inputFileExists) {
+      event.reply('convert-error', `Input file does not exist: ${file.path}`)
+      return
+    }
     try {
-      const inputFileExists = await fs.pathExists(file.path)
-      if (!inputFileExists) {
-        event.reply('convert-error', `Input file does not exist: ${file.path}`)
-        return
-      }
-      const outputFile = path.resolve(file.path.replace('.sta', '.sav'))
-      const outputFileExists = await fs.pathExists(outputFile)
-      if (outputFileExists && !file.overwrite) {
-        event.reply('convert-error', `Output file already exists:`, outputFile)
-        return
-      }
+      // support loading .sav or extracting save from .sta
+      const saveBlock = file.name.endsWith('.sta')
+        ? await exportSaveBlock(file.path)
+        : await fs.readFile(file.path)
+
       try {
-        const saveBlock = await exportSaveBlock(file.path, outputFile)
-        shell.showItemInFolder(outputFile)
+        const {Gen3Save} = (await import('./src/main/pkmn/gen3/Gen3Save.mjs'))
+        const gen3Save = new Gen3Save({buffer: saveBlock})
+        event.reply('loaded-save', gen3Save)
 
-        try {
-          const {Gen3Save} = (await import('./src/main/pkmn/gen3/Gen3Save.mjs'))
-          const gen3Save = new Gen3Save({buffer: saveBlock})
-          event.reply('convert-success', outputFile, gen3Save)
-        } catch (err) {
-          event.reply('convert-error', `.sav was exported, but failed to preview save file: ${outputFile}`)
-        }
-
+        // @todo remove this eventually
         if (process.env.NODE_ENV === 'development') {
-          // @todo remove
           await fs.writeJson('save.json', gen3Save)
         }
       } catch (err) {
-        event.reply('convert-error', `Error exporting save block: ${err.message}`)
+        event.reply('error', `Failed to decode save`)
+      }
+    } catch (err) {
+      event.reply('error', `Error loading save: ${err.message}`)
+      console.error(err)
+    }
+  })
+
+  ipcMain.on('export-save', async (event, inputFile) => {
+    const {filePath} = await dialog.showSaveDialog({
+      title: 'Export Pokemon .sav file',
+      defaultPath: inputFile.path.replace('.sta', '.sav')
+    })
+    if (!filePath) {
+      console.log('Canceled file save')
+      return
+    }
+    try {
+      const inputFileExists = await fs.pathExists(inputFile.path)
+      if (!inputFileExists) {
+        event.reply('error', `Input file does not exist: ${inputFile.path}`)
+        return
+      }
+      const outputFile = filePath
+      try {
+        await exportSaveBlock(inputFile.path, {outputFile})
+        shell.showItemInFolder(outputFile)
+        event.reply('convert-success', outputFile)
+      } catch (err) {
+        event.reply('error', `Error exporting save block: ${err.message}`)
         console.error(err)
       }
     } catch (err) {
-      event.reply('convert-error', `Unknown error: ${err.message}`)
+      event.reply('error', `Unknown error: ${err.message}`)
       console.error('Error converting:', err)
     }
   })

@@ -4,8 +4,10 @@ import {Generations, STA_SAVE_BLOCKS} from '../../shared/constants.mjs'
 // extract the save block from .sta to .sav
 export const exportSaveBlock = async (
   inputFilePath,
-  outputFilePath,
-  generation = Generations.GEN_3
+  {
+    outputFilePath,
+    generation = Generations.GEN_3,
+  } = {}
 ) => {
   let saveBlock
   try {
@@ -20,12 +22,14 @@ export const exportSaveBlock = async (
     console.error(err)
     throw new Error('Error reading Pocket save file from .sta')
   }
-  try {
-    // save the file
-    await fs.writeFile(outputFilePath, saveBlock)
-  } catch (err) {
-    console.error(err)
-    throw new Error('Error writing Pokemon save block to .sav')
+  if (outputFilePath) {
+    try {
+      // save the file
+      await fs.writeFile(outputFilePath, saveBlock)
+    } catch (err) {
+      console.error(err)
+      throw new Error('Error writing Pokemon save block to .sav')
+    }
   }
   return saveBlock
 }
