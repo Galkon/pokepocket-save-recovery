@@ -21,7 +21,7 @@ const plugins = [
   copy({
     targets: [
       { src: 'src/renderer/index.html', dest: 'rollup' },
-      { src: 'public/fonts/*', dest: 'rollup/fonts' }
+      { src: 'public/*', dest: 'rollup/' }
     ],
     // Set to 'true' if you want to copy over files every time you build
     copyOnce: true,

@@ -1,50 +1,38 @@
 import React from 'react';
 import styled from 'styled-components';
-
-// Function to lighten or darken colors
-const lightenDarkenColor = (col, amt) => {
-  let usePound = false;
-  if (col[0] === "#") {
-    col = col.slice(1);
-    usePound = true;
-  }
-  const num = parseInt(col,16);
-  let r = (num >> 16) + amt;
-  if (r > 255) r = 255;
-  else if  (r < 0) r = 0;
-  let b = ((num >> 8) & 0x00FF) + amt;
-  if (b > 255) b = 255;
-  else if  (b < 0) b = 0;
-  let g = (num & 0x0000FF) + amt;
-  if (g > 255) g = 255;
-  else if (g < 0) g = 0;
-  return (usePound?"#":"") + (g | (b << 8) | (r << 16)).toString(16);
-}
+import {Colors} from './Styles'
 
 // Styled button component
 const StyledButton = styled.button`
-  background-color: #4684AD;
-  border-radius: 3px;
-  font-weight: 500; // Medium font weight
-  font-size: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  font-weight: normal;
+  font-size: 15px;
   color: white;
   text-shadow: 1px 1px 0 black;
-  padding: 4px 12px;
-  cursor: pointer;
+  padding: 0px 12px;
+  height: 32px;
   transition: background-color 0.3s ease;
   flex-shrink: 0;
+  background: linear-gradient(to bottom, ${Colors.PRIMARY_MEDIUM}, ${Colors.PRIMARY_DARK});
+  border: 1px solid rgba(255, 255, 255, 0.64);
   outline: 1px solid black;
-  border: 2px solid white;
-  font-family: 'Pokemon Fire Red', sans-serif;
+  font-family: 'Pokemon', sans-serif;
+  cursor: pointer;
+  gap: 6px;
 
   &:hover {
-    background-color: ${() => lightenDarkenColor('#4684AD', 20)};
+    background: linear-gradient(to top, ${Colors.PRIMARY_MEDIUM}, ${Colors.PRIMARY_DARK});
+    border-color: white;
   }
 
   &:active {
-    background-color: ${() => lightenDarkenColor('#4684AD', -20)};
+    background: ${Colors.PRIMARY_DARKER};
+    border-color: white;
   }
-  
+
   ${({$disabled}) => $disabled ? 'pointer-events: none; opacity: 0.35;' : ''}
 `;
 

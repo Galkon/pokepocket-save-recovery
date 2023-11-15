@@ -3,6 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>PokePocket Save Recovery</title>
+    <link rel="stylesheet" href="./pokesprite-pokemon-gen8.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
 
     <style>
         /* CSS */
@@ -12,9 +16,8 @@
         /*}*/
 
         @font-face {
-            font-family: 'Pokemon Fire Red';
-            src: url('./fonts/Pokemon-Fire-Red.woff2') format('woff2'),
-            url('./fonts/Pokemon-Fire-Red.woff') format('woff');
+            font-family: 'Pokemon';
+            src: url('./fonts/Pokemon.ttf') format('truetype');
             font-weight: normal;
             font-style: normal;
             font-display: swap;
@@ -26,8 +29,10 @@
             width: 100vw;
             height: 100vh;
             background-color: #000;
-            font-family: "Pokemon Fire Red", sans-serif;
-            font-size: 20px;
+            font-size: 15px;
+            font-family: 'Roboto', sans-serif;
+            /*font-family: "Pokemon", sans-serif;*/
+            /*-webkit-font-smoothing: none;*/
         }
         #root {
             width: 100%;
