@@ -3,17 +3,6 @@ import styled from 'styled-components'
 import Pokemon from './Pokemon'
 import {BlueContainer, Colors} from './Styles'
 
-// const Colors = {
-//   boy: {
-//     primary: 'rgb(73, 190, 168)',
-//     secondary: 'rgb(47, 152, 144)'
-//   },
-//   girl: {
-//     primary: 'rgb(223, 139, 78)',
-//     secondary: 'rgb(207, 95, 40)'
-//   }
-// }
-
 const Base = styled.div`
   display: flex;
   flex-direction: row;
@@ -33,11 +22,9 @@ const Base = styled.div`
 
 const Card = styled.div`
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
   width: 100%;
   height: 100%;
+  padding: 12px;
   gap: 8px;
 `
 
@@ -48,29 +35,29 @@ const Player = styled.div`
 `
 
 const Character = styled(BlueContainer)`
+  padding: 3px;
   aspect-ratio: 1/1;
+  gap: 6px;
   align-items: center;
   justify-content: center;
-  min-width: 107px;
-  min-height: 107px;
-  max-width: 128px;
-  max-height: 128px;
+  width: 112px;
+  height: 112px;
   margin: 0;
 `
 
 const Name = styled(BlueContainer)`
   width: 100%;
+  background: linear-gradient(to bottom, ${Colors.PRIMARY_DARK} 65%, ${Colors.PRIMARY_MEDIUM} 100%);
 `
 
 const Team = styled.div`
-  display: flex;
-  justify-content: center;
-  flex-direction: row;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Three columns */
+  grid-auto-rows: min-content; /* Make row height only as tall as the content requires */
   gap: 4px;
 `
 
-const Trainer = ({game, name, gender, teamcount, team}) => {
+const Trainer = ({game, name, gender, teamcount, team, boxes}) => {
   if (!game && !name) {
     return <Base/>
   }
@@ -89,10 +76,10 @@ const Trainer = ({game, name, gender, teamcount, team}) => {
                 size={96}
               />
           }
+          <Name>
+            {name}
+          </Name>
         </Character>
-        <Name>
-          {name}
-        </Name>
       </Player>
       <Team>
         {
