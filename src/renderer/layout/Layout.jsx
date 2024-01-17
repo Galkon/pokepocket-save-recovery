@@ -51,7 +51,7 @@ const Layout = () => {
                 fill="white"
               />
             </svg>
-            Save
+            Export
           </Button>
         }
       </Navigation>

@@ -25,11 +25,14 @@ export const exportSaveBlock = async (
   if (outputFilePath) {
     try {
       // save the file
+      console.log('Writing save block:', outputFilePath)
       await fs.writeFile(outputFilePath, saveBlock)
     } catch (err) {
       console.error(err)
       throw new Error('Error writing Pokemon save block to .sav')
     }
+  } else {
+    console.log('No output file specified, skipped write')
   }
   return saveBlock
 }

@@ -130,11 +130,12 @@ const start = async () => {
         event.reply('error', `Input file does not exist: ${inputFile.path}`)
         return
       }
-      const outputFile = filePath
+      const outputFilePath = path.resolve(filePath)
       try {
-        await exportSaveBlock(inputFile.path, {outputFile})
-        shell.showItemInFolder(outputFile)
-        event.reply('convert-success', outputFile)
+        console.log('Exporting save:', outputFilePath)
+        await exportSaveBlock(inputFile.path, {outputFilePath})
+        shell.showItemInFolder(outputFilePath)
+        event.reply('convert-success', outputFilePath)
       } catch (err) {
         event.reply('error', `Error exporting save block: ${err.message}`)
         console.error(err)

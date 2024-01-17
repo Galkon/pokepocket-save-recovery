@@ -16,7 +16,7 @@ export const BlueContainer = styled.div`
   padding: 2px 4px;
   display: flex;
   flex-direction: column;
-  background: linear-gradient(to bottom, rgba(56, 144, 216) 65%, rgba(128, 191, 216) 100%); // Replace with the exact color codes from the image
+  background: linear-gradient(to bottom, ${Colors.PRIMARY_MEDIUM} 65%, ${Colors.PRIMARY_LIGHT} 100%);
   font-family: "Pokemon", sans-serif;
   font-size: 15px;
   text-shadow: 1px 1px black;
