@@ -26,6 +26,8 @@ const Card = styled.div`
   height: 100%;
   padding: 12px;
   gap: 8px;
+  align-items: center;
+  justify-content: center;
 `
 
 const Player = styled.div`
